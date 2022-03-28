@@ -1,0 +1,50 @@
+{% extends 'enroll/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-4">
+        <h3 class="text-center alert alert-info">Add New Student</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ formData.as_p }}
+            <input type="submit" class="btn btn-primary" value="Add">
+        </form>
+    </div>
+
+    <div class="col-sm-7 offset-1" >
+        <h3 class="text-center alert alert-dark">All Student Information</h3>
+        {% if studentData %}
+        <table class="table table-hover">
+            <thead class="table-success table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for std in studentData %}
+                <tr>
+                    <td class="table-danger">{{std.name}}</td>
+                    <td class="table-info">{{std.email}}</td>
+                    <td class="table-warning">{{std.password}}</td>
+                    <td class="t6able-light">
+                        <a href="{% url 'editstudent' std.id %}" class="btn btn-warning ">Edit</a>
+                        <a href="{% url 'deletestudent' std.id %}" class="btn btn-danger ">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3 class="text-center alert alert-warning">No Record Found!</h3>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock content %}
