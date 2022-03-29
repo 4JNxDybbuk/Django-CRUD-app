@@ -20,7 +20,9 @@ from enroll import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('' , views.add_show , name = "addandshow"),
-    path('deletestd/<stdId>' , views.deleteStudent , name="deletestudent"),
-    path('editstd/<stdId>' , views.editStudent , name="editstudent")
+    path('', views.add_show, name="addandshow"),
+    path('deletestd/<stdId>', views.deleteStudent, name="deletestudent"),
+    path('editstd/<stdId>', views.editStudent, name="editstudent")
+
+    
 ]

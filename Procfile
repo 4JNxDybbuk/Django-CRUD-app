@@ -1,1 +1,1 @@
-web:  waitress-serve --port=$PORT DjangoCRUD.wsgi:application
+web: gunicorn DjangoCRUD.wsgi --log-file -
