@@ -17,12 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from enroll import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.add_show, name="addandshow"),
     path('deletestd/<stdId>', views.deleteStudent, name="deletestudent"),
-    path('editstd/<stdId>', views.editStudent, name="editstudent")
+    path('editstd/<stdId>', views.editStudent, name="editstudent"),
 
-    
+    url(r'^static/(?P<path>.*)$', serve,
+        {'document_root': settings.STATIC_ROOT}),
+
 ]
